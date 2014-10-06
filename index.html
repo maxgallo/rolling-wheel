@@ -1,0 +1,115 @@
+<html>
+<head>
+
+    <meta name="viewport" content="width=800, user-scalable=no">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<title></title>
+<style>
+	#wheel{
+		border:5px solid yellowgreen;
+        /*margin-left:-100px;
+        margin-top:-100px;*/
+	}
+    button { 
+        margin:10px;
+        font-size: 30px;
+    }
+</style>
+<script src="rw.js" type="text/javascript"></script>
+
+</head>
+<body>
+    	<canvas id="wheel"   width="400" height="400" ></canvas>
+        <div>
+            <button onclick="spin()">SPIN</button> 
+            <button onclick="startSpin()">START</button> 
+            <button onclick="stopSpin()">STOP</button>
+        </div>
+
+        <ul id="logger"><ul>
+<script type="text/javascript">
+
+jQuery("#wheel").parents("*").css("overflow", "visible");
+
+
+
+/*
+var howmany    = 25, 
+    color_list = [],
+    frequency  = .2;
+
+for (var i = 0; i < howmany; i++)
+{
+   red   = Math.floor(Math.sin(frequency*i + 0) * 127 + 128);
+   green = Math.floor(Math.sin(frequency*i + 2) * 127 + 128);
+   blue  = Math.floor(Math.sin(frequency*i + 4) * 127 + 128);
+
+   color_list.push('rgb(' + red + ', ' + green + ',' + blue + ')');
+}
+
+
+var config = {
+    canvas_dom_element : document.getElementById("wheel")
+    , is_drag_enabled  : true
+    , margin           : 1
+    , colors           : color_list
+    , rotationEndEvent : function(){
+        console.log('rotateEND event');
+    }
+}
+*/
+
+/*
+var logElement = jQuery("#logger");
+console.log = function(a){
+    logElement.append(jQuery('<li>' + a + '</li>'))
+}
+*/
+
+var config = {
+      canvas_dom_element        : document.getElementById("wheel")
+    , is_drag_enabled           : false
+    , is_click_for_spin_enabled : true
+    , image_src                 : 'color_wheel.png'
+    //, image_src                 : 'https://www.google.it/images/srpr/logo11w.png'
+    , disable_during_intertial  : true
+    //, force_verse               : 'clockwise'
+    , inertiaDidStopEvent : function(){
+        console.log('inertiaDidStopEvent event');
+    }
+    , inertiaDidStartEvent : function(){
+        console.log('inertiaDidStartEvent event');
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+var RW = new RollingWheel(config);
+
+var spin = function(){
+    RW.randomSpin();
+}
+
+var startSpin = function(){
+    RW.startSpin(function(){alert('end');});
+}
+
+var stopSpin = function(){
+    RW.stopSpinImmediately(function(){alert('end');});
+}
+
+
+</script>
+
+
+
+</body>
+</html>
